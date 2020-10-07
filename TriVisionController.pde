@@ -16,8 +16,6 @@ ArrayList<IdAndMovieNameList> idAndMovieNameList = new ArrayList<IdAndMovieNameL
 ArrayList<IpPortNumber> ipns;
 int playNumber = -1;
 Settings settings = new Settings();
-float duration = 0;
-float DURATION_ALL = 600;
 
 void setup() {
 
@@ -33,13 +31,8 @@ void setup() {
 void draw() {
 
   background(0);
-  
-  stroke(255);
-  noFill();
-  rect(100, height - 100, DURATION_ALL,25);
-  fill(255,0,0);
-  noStroke();
-  rect(100, height - 100, duration,25);
+
+
 
 
 
@@ -157,16 +150,6 @@ void keyPressed() {
  */
 void oscEvent(OscMessage theOscMessage) {
 
-  if (theOscMessage.checkAddrPattern("/progress")) {
-    float nowTime =  theOscMessage.get(0).floatValue();
-    float allTime =  theOscMessage.get(1).floatValue();
-    
-    duration = (nowTime / allTime) * DURATION_ALL;
-    println(nowTime);
-    println(allTime);
-    println(duration);
-    
-  }
 
   if (theOscMessage.checkAddrPattern("/movieList")) {
 
